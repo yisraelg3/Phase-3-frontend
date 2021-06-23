@@ -1,25 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
+import { Component } from 'react'
+import GoalList from './GoalList'
+import StudentList from './StudentList'
+import StudentGoalList from './StudentGoalList'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  
+  state= {
+    id: 0,
+    name: '',
+    age: 0,
+    subject: '',
+    students: [],
+    goals: [],
+    currentStudent: {}
+  }
+  
+  componentDidMount(){ 
+    fetch(`http://localhost:9393/teachers`)
+    .then((response)=> response.json())
+    .then((teacherData) => {
+        this.setState({
+          id: teacherData.id,
+          name: teacherData.name,
+          age: teacherData.age,
+          subject: teacherData.subject,
+          students: teacherData.students,
+          goals: teacherData.goals
+        }) 
+        // debugger
+    })
+    .catch(() => {
+        console.log("error")
+    })
+  }
+
+  setCurrentStudent = (student) => {
+    this.setState({
+      currentStudent: student
+    })
+  }
+  
+  render() {
+    console.log(this.state)
+    return (
+      <div>
+        <h1>Star Chart</h1>
+        <GoalList goals={this.state.goals}/>
+        <StudentList students={this.state.students} setCurrentStudent={this.setCurrentStudent}/>
+        <StudentGoalList currentStudent={this.state.currentStudent}/>
+      </div>
+    )
+  }
 }
 
 export default App;
