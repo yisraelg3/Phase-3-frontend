@@ -3,12 +3,11 @@ import Student from './Student'
 import Form from './Form'
 
 export default class StudentList extends Component {
-
-  arrOfStudentList = this.props.students.map(studentObj=>{
-    return <Student key={studentObj.id} studentObj={studentObj} setCurrentStudent={this.props.setCurrentStudent}/>
-  })
-
   render() {
+    arrOfStudentList = this.props.students.map(studentObj=>{
+      return <Student key={studentObj.id} studentObj={studentObj} setCurrentStudent={this.props.setCurrentStudent}/>
+    })
+    
     return (
       <div>
         <h2>Student Lists</h2>
