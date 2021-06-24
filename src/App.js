@@ -46,9 +46,9 @@ class App extends Component{
     return (
       <div>
         <h1>Star Chart</h1>
-        <GoalList goals={this.state.goals}/>
-        <StudentList students={this.state.students} setCurrentStudent={this.setCurrentStudent}/>
-        <StudentGoalList currentStudent={this.state.currentStudent}/>
+        <GoalList goals={this.state.goals} teacherId={this.state.id}/>
+        <StudentList students={this.state.students} setCurrentStudent={this.setCurrentStudent} teacherId={this.state.id}/>
+        <StudentGoalList currentStudent={this.state.currentStudent} students={this.state.students} teacherId={this.state.id}/>
       </div>
     )
   }
