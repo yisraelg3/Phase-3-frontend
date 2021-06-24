@@ -3,6 +3,10 @@ import { Card, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
 export default class Student extends Component {
+  handleClick = () => {
+   this.props.setCurrentStudent(this.props.studentObj)
+  }
+
   render() {
     
     return (
@@ -12,7 +16,7 @@ export default class Student extends Component {
         <p>Grade: {this.props.studentObj.grade}</p> 
         <p>Hair color: {this.props.studentObj.hair_color}</p>
         <p>Siblings amount: {this.props.studentObj.siblings_amount}</p>
-        <Button color='black' >Goals</Button>
+        <Button color='black' onClick={this.handleClick}>Goals</Button>
         <br/>
       </Card>
     )

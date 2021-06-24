@@ -13,7 +13,8 @@ class App extends Component{
     subject: '',
     students: [],
     goals: [],
-    
+    currentStudent: {},
+    star: 0
   }
   
   componentDidMount(){ 
@@ -52,7 +53,8 @@ class App extends Component{
         currentStudent={this.state.currentStudent} 
         students={this.state.students} 
         teacherId={this.state.id}
-        goals={this.state.goals}/>
+        goals={this.state.goals}
+        star={this.state.star}/>
       </div>
     )
   }
