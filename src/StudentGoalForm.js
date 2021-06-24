@@ -46,7 +46,7 @@ export default class StudentGoalForm extends Component {
     return (
       <div>
         {/* {this.props.student.name} */}
-        <h3>Assign a new goal</h3> 
+        <h3>Assign {this.props.currentStudent.name} a new goal</h3> 
         <Form onSubmit={this.handleSubmit}>
             <select  value={this.state.goal} onChange={this.handleChange}>
               {goalList}
