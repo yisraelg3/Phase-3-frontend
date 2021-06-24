@@ -5,6 +5,7 @@ export default class StudentGoal extends Component {
     return (
       <div>
         
+
       </div>
     )
   }

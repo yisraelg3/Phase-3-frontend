@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
+import { Card, Button } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 export default class Student extends Component {
   render() {
     
     return (
       
-      <div>
-        <p>name: {this.props.studentObj.name}</p>
-        <p>grade: {this.props.studentObj.grade}</p> 
-        <p>hair color: {this.props.studentObj.hair_color}</p>
-        <p>siblings amount:{this.props.studentObj.siblings_amount}</p>
+      <Card>
+        <h4>Name: {this.props.studentObj.name}</h4>
+        <p>Grade: {this.props.studentObj.grade}</p> 
+        <p>Hair color: {this.props.studentObj.hair_color}</p>
+        <p>Siblings amount: {this.props.studentObj.siblings_amount}</p>
+        <Button color='black' >Goals</Button>
         <br/>
-      </div>
+      </Card>
     )
   }
 }

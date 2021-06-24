@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Student from './Student'
 import Form from './Form'
+import { Card } from 'semantic-ui-react'
 
 export default class StudentList extends Component {
 
@@ -23,7 +24,9 @@ export default class StudentList extends Component {
     return (
       <div>
         <h2>Student List</h2>
+        <Card.Group itemsPerRow={4}>
         {arrOfStudentList}
+        </Card.Group>
         {this.props.students.length > 0 ? <Form correctKeys={correctKeys} name='students' teacherId={this.props.teacherId}/> : ''}
       </div>
     )
