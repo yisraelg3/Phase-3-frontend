@@ -12,7 +12,7 @@ export default class StudentList extends Component {
     return (
       <div>
         <h2>Student Lists</h2>
-        <Card.Group itemsPerRow={2}>
+        <Card.Group itemsPerRow={4}>
         {arrOfStudentList}
         </Card.Group>
       </div>
