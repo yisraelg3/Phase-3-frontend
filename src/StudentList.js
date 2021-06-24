@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Student from './Student'
 import Form from './Form'
+import { Card } from 'semantic-ui-react'
 
 export default class StudentList extends Component {
   render() {
@@ -11,7 +12,9 @@ export default class StudentList extends Component {
     return (
       <div>
         <h2>Student Lists</h2>
+        <Card.Group itemsPerRow={2}>
         {arrOfStudentList}
+        </Card.Group>
       </div>
     )
   }

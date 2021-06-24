@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+import { Card } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 export default class Goal extends Component {
   render() {
     return (
-      <div>
-        <p>title: {this.props.goalObj.title}</p>
-        <p>description: {this.props.goalObj.description}</p>
+      
+        <Card>
+        <h3>Title: {this.props.goalObj.title}</h3>
+        <p>Description: {this.props.goalObj.description}</p>
         <br/>
-      </div>
+       </Card>
     )
   }
 }
