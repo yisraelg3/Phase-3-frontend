@@ -43,18 +43,25 @@ export default class Form extends Component {
     })
     .then(res => res.json())
     .then(data => console.log(data))
+    .then(t => {
+      this.props.correctKeys.forEach(key => {
+        this.setState ({
+          [key]: ''
+        })
+      })
+    })
   }
 
   render() {
-     console.log(this.state)
-
+    //  console.log(this.state)
+    // debugger
      const inputs = this.props.correctKeys.map(key => {
        let UpcaseLabel = key[0].toUpperCase() + key.slice(1)
        let label = UpcaseLabel.replaceAll('_', ' ')
-
+// debugger
        return (<Fragment key={key}>
        <label htmlFor={key}>{label}: </label>
-       <input type='text' name={key} id={key} onChange={this.handleChange} defaultValue={this.state.key}/>
+       <input type='text' name={key} id={key} onChange={this.handleChange} value={this.state[key]}/>
        <br/>
        </Fragment>)})
 
