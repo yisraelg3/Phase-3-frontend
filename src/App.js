@@ -36,6 +36,31 @@ class App extends Component{
     })
   }
 
+  addItem = (newObj, name) => {
+    const newStateArr = [...this.state[name], newObj]
+    this.setState({
+      [name]: newStateArr
+    })
+  }
+
+  addGoalToStudent = (newStudentGoal, goal_title) => {
+    newStudentGoal.goal_title = goal_title
+    const Student = this.state.students.find(student => student.id === newStudentGoal.student_id)
+    const newStudentGoalArray = [...Student.studentgoals, newStudentGoal]
+    const newStudentObj = Object.assign({}, Student, {studentgoals: newStudentGoalArray})
+    // debugger
+    const newStudentsArray = this.state.students.map(student => {
+      if (student.id === Student.id) {
+        return newStudentObj
+      } else {
+        return student
+      }
+    })
+    this.setState({
+      students: newStudentsArray
+    })
+  }
+
   setCurrentStudent = (student) => {
     this.setState({
       currentStudent: student
@@ -43,18 +68,25 @@ class App extends Component{
   }
   
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div>
         <h1>Star Chart</h1>
-        <GoalList goals={this.state.goals} teacherId={this.state.id}/>
-        <StudentList students={this.state.students} setCurrentStudent={this.setCurrentStudent} teacherId={this.state.id}/>
+        <GoalList goals={this.state.goals} teacherId={this.state.id} addItem={this.addItem}/>
+        <StudentList 
+          students={this.state.students} 
+          setCurrentStudent={this.setCurrentStudent} 
+          teacherId={this.state.id} 
+          addItem={this.addItem}
+        />
         <StudentGoalList 
-        currentStudent={this.state.currentStudent} 
-        students={this.state.students} 
-        teacherId={this.state.id}
-        goals={this.state.goals}
-        star={this.state.star}/>
+          currentStudent={this.state.currentStudent} 
+          students={this.state.students} 
+          teacherId={this.state.id}
+          goals={this.state.goals}
+          star={this.state.star}x
+          addGoalToStudent={this.addGoalToStudent}
+        />
       </div>
     )
   }

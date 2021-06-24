@@ -12,7 +12,7 @@ export default class StudentGoalList extends Component {
       <div>
         <h2>Student Goals</h2>
         {arrOfStudentGoalList}
-        <StudentGoalForm goals={this.props.goals} />
+        {this.props.goals.length > 0 ? <StudentGoalForm goals={this.props.goals} currentStudent={this.props.currentStudent} addGoalToStudent={this.props.addGoalToStudent}/> : ''}
       </div>
     )
   }

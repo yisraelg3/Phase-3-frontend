@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Goal from './Goal'
-import Form from './Form'
+import Form from './InputForm'
 import { Card } from 'semantic-ui-react'
 
 export default class GoalList extends Component {
@@ -19,7 +19,7 @@ export default class GoalList extends Component {
         <Card.Group itemsPerRow={1}>
         {arrOfGoalList}
         </Card.Group>
-        {this.props.goals.length > 0 ?  <Form correctKeys={correctKeys} name='goals' teacherId={this.props.teacherId}/> : ''}
+        {this.props.goals.length > 0 ?  <Form correctKeys={correctKeys} name='goals' teacherId={this.props.teacherId} addItem={this.props.addItem}/> : ''}
       </div>
     )
   }

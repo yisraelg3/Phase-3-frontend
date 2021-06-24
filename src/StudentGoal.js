@@ -18,16 +18,17 @@ addStar = () => {
     
 
     let arrOfStudentGoals = filteredStudentGoal.map(studentGoal=>{
-      return <p key={studentGoal.id}>Goal Title: {studentGoal.goal_title}</p>
+      return (
+      <div key={studentGoal.id} className="ui black button" onClick={this.addStar}>
+          <p >Goal Title: {studentGoal.goal_title}</p>
+          <i className="yellow star icon"></i> star: {this.state.star}
+        </div>)
     })
     
     
     return (
       <div>
         {arrOfStudentGoals}
-        <div class="ui black button" onClick={this.addStar}>
-            <i class="yellow star icon"></i> star: {this.state.star}
-        </div>
       </div>
     )
   }

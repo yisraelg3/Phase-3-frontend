@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Student from './Student'
-import Form from './Form'
+import Form from './InputForm'
 import { Card } from 'semantic-ui-react'
 
 export default class StudentList extends Component {
@@ -18,7 +18,7 @@ export default class StudentList extends Component {
     let correctKeys = this.props.students.length > 0 ? transformKeys.filter(key => ['name','grade','hair_color','number_of_siblings'].includes(key)) : studentKeys
 
     const arrOfStudentList = this.props.students.map(studentObj => {
-      return <Student key={studentObj.id} studentObj={studentObj} setCurrentStudent={this.props.setCurrentStudent}/>
+      return <Student key={studentObj.id} studentObj={studentObj} setCurrentStudent={this.props.setCurrentStudent} />
     })
 
     return (
@@ -27,7 +27,7 @@ export default class StudentList extends Component {
         <Card.Group itemsPerRow={4}>
         {arrOfStudentList}
         </Card.Group>
-        {this.props.students.length > 0 ? <Form correctKeys={correctKeys} name='students' teacherId={this.props.teacherId}/> : ''}
+        {this.props.students.length > 0 ? <Form correctKeys={correctKeys} name='students' teacherId={this.props.teacherId} addItem={this.props.addItem}/> : ''}
       </div>
     )
   }
