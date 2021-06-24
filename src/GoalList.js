@@ -3,7 +3,7 @@ import Goal from './Goal'
 
 export default class GoalList extends Component {
   render() {
-    arrOfGoalList = this.props.goals.map(goalObj=>{
+    let arrOfGoalList = this.props.goals.map(goalObj=>{
       return <Goal key={goalObj.id} goalObj={goalObj}/>
     })
   
@@ -11,7 +11,7 @@ export default class GoalList extends Component {
     return (
       <div>
         <h2> Goal Lists </h2>
-        {this.arrOfGoalList}
+        {arrOfGoalList}
       </div>
     )
   }
