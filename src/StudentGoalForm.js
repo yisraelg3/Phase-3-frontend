@@ -1,31 +1,33 @@
 import React, { Component } from 'react'
+import { Button, Form } from 'semantic-ui-react'
 
 export default class StudentGoalForm extends Component {
   
   state = {
-      goal: this.props.goals[0]
+      goal: this.props.goals[0].title
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
     const dataToPost = {
-      student_id: this.props.studentId,
-      goal_id: this.state.goal.id,
+      student_id: this.props.currentStudent.id,
+      goal_id: this.props.goals.find(goal => goal.title === this.state.goal).id,
       star: 0,
-      completed: false
+      completed: false,
     } 
+
     fetch(`http://localhost:9393/studentgoals`,{
     method: 'POST',
     headers : {
       "Content-type":"application/json"
     },
-    body: JSON.stringify({dataToPost})
+    body: JSON.stringify(dataToPost)
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(newStudentGoal => this.props.addGoalToStudent(newStudentGoal, this.state.goal))
     .then(t => {
       this.setState ({
-        goal: this.props.goals[0]
+        goal: this.props.goals[0].title
       })
     })
   }
@@ -38,14 +40,20 @@ export default class StudentGoalForm extends Component {
   }
   
     render() {
-      const goalList = this.props.goals.map(goal => <option key={goal.id} value={goal}> {goal.title} </option>)
+      // console.log(this.props.goals)
+      // console.log(this.state.goal)
+      const goalList = this.props.goals.map(goal => <option key={goal.id} value={goal.title}> {goal.title} </option>)
     return (
-      <form onSubmit={this.handleSubmit}>
-          <select  value={this.state.goal} onChange={this.handleChange}>
-            {goalList}
-          </select>
-          <button>Submit</button>
-      </form>
+      <div>
+        {/* {this.props.student.name} */}
+        <h3>Assign {this.props.currentStudent.name} a new goal</h3> 
+        <Form onSubmit={this.handleSubmit}>
+            <select  value={this.state.goal} onChange={this.handleChange}>
+              {goalList}
+            </select>
+            <Button>Submit</Button>
+        </Form>
+      </div>
     )
   }
 }

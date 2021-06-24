@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import { Button, Form } from 'semantic-ui-react'
 
-export default class Form extends Component {
+export default class InputForm extends Component {
 
   makeState = () => {
     const forState = {} 
@@ -42,7 +43,7 @@ export default class Form extends Component {
     body: JSON.stringify(objectToPost)
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(newObj => this.props.addItem(newObj, this.props.name))
     .then(t => {
       this.props.correctKeys.forEach(key => {
         this.setState ({
@@ -67,10 +68,13 @@ export default class Form extends Component {
 
     // console.log(this.props)
     return (
-      <form onSubmit={this.handleSubmit}>
-        {inputs}
-        <button>Submit</button>
-      </form>
+      <div>
+        <h3>Add new {this.props.name}</h3>
+        <Form onSubmit={this.handleSubmit}>
+          {inputs}
+          <Button type='submit'>Submit</Button>
+        </Form>
+      </div>
     )
   }
 }
