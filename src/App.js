@@ -14,7 +14,7 @@ class App extends Component{
     students: [],
     goals: [],
     currentStudent: {},
-    star: 0
+    studentgoals: []
   }
   
   componentDidMount(){ 
@@ -54,7 +54,8 @@ class App extends Component{
         students={this.state.students} 
         teacherId={this.state.id}
         goals={this.state.goals}
-        star={this.state.star}/>
+        // studentgoals={this.state.studentgoals}
+        />
       </div>
     )
   }
