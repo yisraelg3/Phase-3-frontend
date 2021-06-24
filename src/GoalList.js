@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Goal from './Goal'
-import Form from './InputForm'
+import InputForm from './InputForm'
 import { Card } from 'semantic-ui-react'
+import { Route, Link } from 'react-router-dom'
 
 export default class GoalList extends Component {
   render() {
@@ -16,10 +17,13 @@ export default class GoalList extends Component {
     return (
       <div>
         <h2> Goal Lists </h2>
+        <Link to='/newgoal'>+ Add new Goal</Link>
         <Card.Group itemsPerRow={1}>
         {arrOfGoalList}
         </Card.Group>
-        {this.props.goals.length > 0 ?  <Form correctKeys={correctKeys} name='goals' teacherId={this.props.teacherId} addItem={this.props.addItem}/> : ''}
+        <Route exact path='/newgoal'>
+          <InputForm correctKeys={correctKeys} name='goals' teacherId={this.props.teacherId} addItem={this.props.addItem}/>
+        </Route>
       </div>
     )
   }

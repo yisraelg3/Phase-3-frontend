@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Student from './Student'
 import Form from './InputForm'
 import { Card } from 'semantic-ui-react'
+import { Route, Link } from 'react-router-dom'
 
 export default class StudentList extends Component {
 
@@ -24,10 +25,13 @@ export default class StudentList extends Component {
     return (
       <div>
         <h2>Student List</h2>
+        <Link to='/newstudent'>+ Add new Student</Link>
         <Card.Group itemsPerRow={4}>
         {arrOfStudentList}
         </Card.Group>
-        {this.props.students.length > 0 ? <Form correctKeys={correctKeys} name='students' teacherId={this.props.teacherId} addItem={this.props.addItem}/> : ''}
+        <Route exact path='/newstudent'>
+          <Form correctKeys={correctKeys} name='students' teacherId={this.props.teacherId} addItem={this.props.addItem}/>
+        </Route>
       </div>
     )
   }

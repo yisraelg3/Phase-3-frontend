@@ -3,6 +3,9 @@ import { Component } from 'react'
 import GoalList from './GoalList'
 import StudentList from './StudentList'
 import StudentGoalList from './StudentGoalList'
+import StudentGoalForm from './StudentGoalForm'
+import InputForm from'./InputForm'
+import {Switch, Route} from 'react-router-dom'
 
 class App extends Component{
   
@@ -72,21 +75,36 @@ class App extends Component{
     return (
       <div>
         <h1>Star Chart</h1>
-        <GoalList goals={this.state.goals} teacherId={this.state.id} addItem={this.addItem}/>
-        <StudentList 
-          students={this.state.students} 
-          setCurrentStudent={this.setCurrentStudent} 
-          teacherId={this.state.id} 
-          addItem={this.addItem}
-        />
-        <StudentGoalList 
-          currentStudent={this.state.currentStudent} 
-          students={this.state.students} 
-          teacherId={this.state.id}
-          goals={this.state.goals}
-          star={this.state.star}x
-          addGoalToStudent={this.addGoalToStudent}
-        />
+        {/* <Switch> */}
+          <Route exact path='/'>
+            <GoalList goals={this.state.goals} teacherId={this.state.id} addItem={this.addItem}/>
+            <StudentList 
+              students={this.state.students} 
+              setCurrentStudent={this.setCurrentStudent} 
+              teacherId={this.state.id} 
+              addItem={this.addItem}
+            />
+          </Route>
+          <Route exact path='/:id' render={routerProps => {
+            <StudentGoalList 
+            routerProps={routerProps}
+            currentStudent={this.state.currentStudent} 
+            students={this.state.students} 
+            teacherId={this.state.id}
+            goals={this.state.goals}
+            star={this.state.star}x
+            addGoalToStudent={this.addGoalToStudent}
+          /> 
+          }}>  
+          </Route>
+          <Route exact path='/newstudentgoal'>
+            <StudentGoalForm 
+              goals={this.props.goals} 
+              currentStudent={this.props.currentStudent} 
+              addGoalToStudent={this.props.addGoalToStudent}
+            />
+          </Route>
+        {/* </Switch> */}
       </div>
     )
   }
