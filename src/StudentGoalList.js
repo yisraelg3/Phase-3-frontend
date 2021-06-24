@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import StudentGoal from './StudentGoal'
+import StudentGoalForm from './StudentGoalForm'
 
 export default class StudentGoalList extends Component {
 
@@ -11,7 +12,7 @@ export default class StudentGoalList extends Component {
       <div>
         <h2>Student Goals</h2>
         {arrOfStudentGoalList}
-        
+        <StudentGoalForm goals={this.props.goals} />
       </div>
     )
   }

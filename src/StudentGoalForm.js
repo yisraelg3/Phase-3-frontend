@@ -8,13 +8,13 @@ export default class StudentGoalForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    dataToPost = {
+    const dataToPost = {
       student_id: this.props.studentId,
       goal_id: this.state.goal.id,
       star: 0,
       completed: false
     } 
-    fetch(`http://localhost:9393/${studentgoals}`,{
+    fetch(`http://localhost:9393/studentgoals`,{
     method: 'POST',
     headers : {
       "Content-type":"application/json"
@@ -33,15 +33,15 @@ export default class StudentGoalForm extends Component {
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      goal: event.target.value
     })
   }
   
     render() {
-      goalList = this.props.goals.map(goal => <option value={goal}> {goal.title} </option>)
+      const goalList = this.props.goals.map(goal => <option key={goal.id} value={goal}> {goal.title} </option>)
     return (
       <form onSubmit={this.handleSubmit}>
-          <select name='goal' value={this.state.goal} onChange={this.handleChange}>
+          <select  value={this.state.goal} onChange={this.handleChange}>
             {goalList}
           </select>
           <button>Submit</button>
