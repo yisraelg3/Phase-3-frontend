@@ -32,7 +32,7 @@ class StudentGoalForm extends Component {
       // this.setState ({
       //   goal: this.props.goals[0].title
       // })
-      this.props.history.push('/studentgoals')
+      this.props.history.push(`/studentgoals/${this.props.currentStudent.id}`)
     })
   }
 
@@ -52,7 +52,7 @@ class StudentGoalForm extends Component {
   }
 
   cancel = () => {
-    this.props.history.push('/studentgoals')
+    this.props.history.push(`/studentgoals/${this.props.currentStudent.id}`)
   }
   
     render() {
