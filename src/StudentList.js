@@ -14,9 +14,10 @@ export default class StudentList extends Component {
 
     return (
       <div>
-        <h2>Student List</h2>
-        <Link to='/newstudent'><Button>+ Add new Student</Button></Link>
-        <Card.Group itemsPerRow={4}>
+        <hr style={{marginTop: 100}}></hr>
+        <h2 style={{paddingTop: 30}}>Student List</h2>
+        <Link to='/newstudent'><Button style={{marginBottom: 5}}color="black">+ Add new Student</Button></Link>
+        <Card.Group style={{alignItems: 'center'}}itemsPerRow={3} >
         {arrOfStudentList}
         </Card.Group>
       </div>

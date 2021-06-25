@@ -39,6 +39,10 @@ class App extends Component{
     })
   }
 
+  // deleteStudentGoalFromState = (studentgoal) => {
+  //   let 
+  // }
+
   addItem = (newObj, name) => {
     const newStateArr = [...this.state[name], newObj]
     this.setState({
@@ -112,8 +116,8 @@ class App extends Component{
 
     // console.log(this.state)
     return (
-      <div>
-        <h1>Star Chart</h1>
+      <div style={{padding: 30,backgroundColor:'#ede5e1', backgroundImage: "url('https://i.pinimg.com/originals/43/7c/b7/437cb739d14912acd84d65ee853b9067.gif')"}}>
+        <h1 style={{paddingTop: 20, fontSize: 40, textAlign: 'center' , color: 'black', fontWeight: 'bold', fontFamily: 'Lucida Std'}}>✨Star Chart✨</h1>
         {/* <Switch> */}
           <Route exact path='/'>
             <GoalList goals={this.state.goals} teacherId={this.state.id} addItem={this.addItem}/>
@@ -139,6 +143,7 @@ class App extends Component{
         </Route>
         <Route exact path='/studentgoals'>
             <StudentGoalList 
+            deleteStudentGoalFromState = {this.deleteStudentGoalFromState}
             // routerProps={routerProps}
             currentStudent={this.state.currentStudent} 
             students={this.state.students} 

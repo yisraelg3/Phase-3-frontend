@@ -12,14 +12,14 @@ class Student extends Component {
   render() {
     return (
       
-      <Card>
-        <h4>Name: {this.props.studentObj.name}</h4>
+      <Card style={{backgroundColor: '#f09b5f', padding: 30}}>
+        <h3 style={{fontFamily: 'Lucida Std'}}>Name: {this.props.studentObj.name}</h3>
         <p>Grade: {this.props.studentObj.grade}</p> 
         <p>Hair color: {this.props.studentObj.hair_color}</p>
         <p>Siblings amount: {this.props.studentObj.siblings_amount}</p>
-        <Button color='black' onClick={this.handleClick}>Goals</Button>
+        <Button color='black' onClick={this.handleClick}>Student Goals</Button>
         {/* <Link to='/studentgoals'><Button color='black' onClick={this.handleClick}>Goals</Button></Link> */}
-        <br/>
+        
       </Card>
     )
   }

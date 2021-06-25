@@ -6,9 +6,9 @@ export default class Goal extends Component {
   render() {
     return (
       
-        <Card>
-        <h3>Title: {this.props.goalObj.title}</h3>
-        <p>Description: {this.props.goalObj.description}</p>
+        <Card style={{maxWidth: 10000, alignItems: 'center',  backgroundColor: '#a7c2b2'}}>
+        <h3 style={{fontFamily: 'Lucida Std' , marginTop:20}}>Goal: {this.props.goalObj.title}</h3>
+        <p >Description: {this.props.goalObj.description}</p>
         <br/>
        </Card>
     )

@@ -77,8 +77,8 @@ class InputForm extends Component {
         <h3>Add new {this.props.name}</h3>
         <Form onSubmit={this.handleSubmit}>
           {inputs}
-          <Button type='submit'>Submit</Button>
-          <Button onClick={this.cancel}>Cancel</Button>
+          <Button style={{marginTop: 300, textAlign: 'center'}} color='black' type='submit'>Submit</Button>
+          <Button color='grey' onClick={this.cancel}>Cancel</Button>
         </Form>
       </div>
     )

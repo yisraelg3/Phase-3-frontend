@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import StudentGoal from './StudentGoal'
 import { Link, withRouter } from'react-router-dom'
+import { Card, Button } from 'semantic-ui-react'
 // import StudentGoalForm from './StudentGoalForm'
 
 class StudentGoalList extends Component {
@@ -15,15 +16,23 @@ class StudentGoalList extends Component {
         key={StudentObj.id} 
         StudentGoalObj={StudentObj.studentgoals} 
         currentStudent={this.props.currentStudent}
-        addStar={this.props.addStar}/>)
+        addStar={this.props.addStar}
+        deleteStudentGoalFromState={this.props.deleteStudentGoalFromState}
+        />)
+        
     })
+
+    // let arrOfGoalList = this.props.goals.map(GoalObj=>{
+    //   return (<StudentGoal key={GoalObj.id} GoalObj={GoalObj}/>)
+    // })
 
     return (
       <div>
-        <h2>Student Goals</h2>
-        <Link to='/'>Home</Link><br/><br/>
-        <Link to='/newstudentgoal'>+ Add new Goal</Link>
+        <h2 style={{marginBottom: 50}}>Student Goals</h2>
+        <Link style={{color: 'black', fontSize: '14px', marginTop:5}} to='/'>Home</Link><br/><br/>
+        <Button color='black'><Link style={{color: 'black', fontSize: '14px', color: '#ffffff', marginBottom:10 }} to='/newstudentgoal'>+ Add new Goal</Link></Button>
         {arrOfStudentGoalList}
+        {/* {arrOfGoalList} */}
       </div>
     )
   }
