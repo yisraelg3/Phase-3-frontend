@@ -39,9 +39,29 @@ class App extends Component{
     })
   }
 
-  // deleteStudentGoalFromState = (studentgoal) => {
-  //   let 
-  // }
+  deleteStudentGoalFromState = (studentgoal) => {
+    let theStudentContainsTheStudentGoal = this.state.students.find(student=>{
+      return student.id === studentgoal.student_id
+    })
+    let newArrOfStudentgoals = theStudentContainsTheStudentGoal.studentgoals.filter(studentgoalObj=>{
+      return studentgoalObj.id !== studentgoal.id
+    })
+    let copyOfStudent = {
+      ...theStudentContainsTheStudentGoal,
+      studentgoals: newArrOfStudentgoals
+    }
+    let theCopyOfAllStudents = this.state.students.map(student=>{
+      if(student.id === copyOfStudent.id){
+        return copyOfStudent
+      }else{
+        return student
+      }
+    })
+
+    this.setState({
+      students: theCopyOfAllStudents
+    })
+  }
 
   addItem = (newObj, name) => {
     const newStateArr = [...this.state[name], newObj]

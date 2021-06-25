@@ -25,14 +25,14 @@ addStar = (e) => {
 
 handleDelete = (e) => {
   
-console.log(this.props.StudentGoalObj)
-    fetch(`http://localhost:9393/studentgoals/${this.props.StudentGoalObj}`, {
+  let currentId = e.currentTarget.dataset.id
+    fetch(`http://localhost:9393/studentgoals/${currentId}`, {
       method: "DELETE"
     })  
-    // .then(res=>res.json())
-    // .then((deleteStudentGoal)=>{
-    //   this.props.deleteStudentGoalFromState(this.props.studentGoal)
-    // })
+    .then(res=>res.json())
+    .then((deleteStudentGoal)=>{
+      this.props.deleteStudentGoalFromState(deleteStudentGoal)
+    })
 }
 
   render() {
@@ -41,16 +41,15 @@ console.log(this.props.StudentGoalObj)
       return goal.student_id === this.props.currentStudent.id})
     
     let arrOfStudentGoals = filteredStudentGoal.map(studentGoal=>{
-      // console.log(studentGoal)
+      // console.log(arrOfStudentGoals)
       return (
         <Card itemPerRow={2} style={{marginTop: 10, padding:10, backgroundColor: '#8db4c9'}}>
       <div style={{align: 'center'}} data-id={studentGoal.id} key={studentGoal.id} onClick={this.addStar}>
           <h3 style={{fontFamily: 'Lucida Std'}}>Goal: {studentGoal.goal_title}</h3>
           {studentGoal.completed ? <p><strong>Goal Complete!</strong></p> : ''}
           <i className="yellow star icon"></i> <span style={{fontWeight: 'bold'}}>Stars: {studentGoal.star}<br/></span>
-         
       </div>
-      <Button itemPerRow={2} style={{marginTop: 10}}color='black' onClick={this.handleDelete}>Delete</Button>
+      <Button data-id={studentGoal.id} style={{marginTop: 10}}color='black' onClick={this.handleDelete}>Delete</Button>
       </Card>
       )
     })
