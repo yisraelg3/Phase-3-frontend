@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Card, Button } from 'semantic-ui-react'
 
 export default class StudentGoal extends Component {
 //   state = {
@@ -22,6 +23,18 @@ addStar = (e) => {
       this.props.addStar(studentGoalObj)})
 }
 
+handleDelete = (e) => {
+  
+console.log(this.props.StudentGoalObj)
+    fetch(`http://localhost:9393/studentgoals/${this.props.StudentGoalObj}`, {
+      method: "DELETE"
+    })  
+    // .then(res=>res.json())
+    // .then((deleteStudentGoal)=>{
+    //   this.props.deleteStudentGoalFromState(this.props.studentGoal)
+    // })
+}
+
   render() {
     // console.log(this.props)
     let filteredStudentGoal = this.props.StudentGoalObj.filter(goal=> {
@@ -30,11 +43,15 @@ addStar = (e) => {
     let arrOfStudentGoals = filteredStudentGoal.map(studentGoal=>{
       // console.log(studentGoal)
       return (
-      <div data-id={studentGoal.id} key={studentGoal.id} className="ui black button" onClick={this.addStar}>
-          <p>Goal Title: {studentGoal.goal_title}</p>
+        <Card itemPerRow={2} style={{marginTop: 10, padding:10, backgroundColor: '#8db4c9'}}>
+      <div style={{align: 'center'}} data-id={studentGoal.id} key={studentGoal.id} onClick={this.addStar}>
+          <h3 style={{fontFamily: 'Lucida Std'}}>Goal: {studentGoal.goal_title}</h3>
           {studentGoal.completed ? <p><strong>Goal Complete!</strong></p> : ''}
-          <i className="yellow star icon"></i> <span>Stars: {studentGoal.star}</span>
+          <i className="yellow star icon"></i> <span style={{fontWeight: 'bold'}}>Stars: {studentGoal.star}<br/></span>
+         
       </div>
+      <Button itemPerRow={2} style={{marginTop: 10}}color='black' onClick={this.handleDelete}>Delete</Button>
+      </Card>
       )
     })
     

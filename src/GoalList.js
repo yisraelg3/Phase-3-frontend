@@ -12,9 +12,9 @@ export default class GoalList extends Component {
 
     return (
       <div>
-        <h2> Your Goal List </h2>
-        <Link to='/newgoal'><Button>+ Add new Goal</Button></Link>
-        <Card.Group itemsPerRow={1}>
+        <h2 style={{textAlign: 'left', paddingTop: 50}}> Goal List </h2>
+        <Link to='/newgoal'><Button style={{marginBottom: 5, alignItems: 'right'}} color="black">+ Add new Goal</Button></Link>
+        <Card.Group itemsPerRow={3} style={{alignItems: 'center'}}>
         {arrOfGoalList}
         </Card.Group>
       </div>

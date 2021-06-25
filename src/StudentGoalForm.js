@@ -57,8 +57,8 @@ class StudentGoalForm extends Component {
             <select  value={this.state.goal} onChange={this.handleChange}>
               {goalList}
             </select>
-            <Button type='submit'>Submit</Button>
-            <Button onClick={this.cancel}>Cancel</Button>
+            <Button style={{marginTop:300}} color='black' type='submit'>Submit</Button>
+            <Button color='grey' onClick={this.cancel}>Cancel</Button>
         </Form>
       </div>
     )
