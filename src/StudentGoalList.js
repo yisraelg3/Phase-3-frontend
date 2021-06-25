@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import StudentGoal from './StudentGoal'
 import { Link, withRouter } from'react-router-dom'
-import { Card, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 // import StudentGoalForm from './StudentGoalForm'
 
 class StudentGoalList extends Component {
@@ -30,8 +30,8 @@ class StudentGoalList extends Component {
       <div>
         <h2 style={{marginBottom: 50}}>Student Goals</h2>
         <h2>{this.props.currentStudent.name}</h2>
-        <Link style={{color: 'black', fontSize: '14px', marginTop:5}} to='/'>Home</Link><br/><br/>
-        <Button color='black'><Link style={{color: 'black', fontSize: '14px', color: '#ffffff', marginBottom:10 }} to='/newstudentgoal'>+ Add new Goal</Link></Button>
+        <Link style={{color: 'black', fontSize: '14px', marginTop:5}} to='/home'>🏠 Home</Link><br/><br/>
+        <Button color='black'><Link style={{fontSize: '14px', color: '#ffffff', marginBottom:10 }} to='/newstudentgoal'>+ Add new Goal</Link></Button>
         {arrOfStudentGoalList}
         {/* {arrOfGoalList} */}
       </div>

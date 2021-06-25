@@ -5,7 +5,9 @@ import StudentList from './StudentList'
 import StudentGoalList from './StudentGoalList'
 import StudentGoalForm from './StudentGoalForm'
 import InputForm from'./InputForm'
-import { Route } from 'react-router-dom'
+import Login from'./Login'
+import { Route, withRouter } from 'react-router-dom'
+import { Button } from 'semantic-ui-react'
 
 class App extends Component{
   
@@ -16,23 +18,34 @@ class App extends Component{
     subject: '',
     students: [],
     goals: [],
-    currentStudent: {},
-    studentgoals: []
+    currentStudent: {}
+    // studentgoals: []
   }
   
-  componentDidMount(){ 
-    fetch(`http://localhost:9393/teachers`)
+  login = (loginInfo) => { 
+    fetch(`http://localhost:9393/login`,{
+      method: 'POST',
+      headers : {
+        "Content-type" :"application/json"
+      },
+      body: JSON.stringify(loginInfo)
+    })
     .then((response)=> response.json())
     .then((teacherData) => {
+      if (teacherData.error) {
+        alert('Username is incorrect!')
+      } else {
         this.setState({
-          id: teacherData.id,
-          name: teacherData.name,
-          age: teacherData.age,
-          subject: teacherData.subject,
-          students: teacherData.students,
-          goals: teacherData.goals
-        }) 
-        // debugger
+            id: teacherData.id,
+            name: teacherData.name,
+            age: teacherData.age,
+            subject: teacherData.subject,
+            students: teacherData.students,
+            goals: teacherData.goals
+          }) 
+          this.props.history.push('/home')
+          // debugger
+      }
     })
     .catch(() => {
         console.log("error")
@@ -117,8 +130,26 @@ class App extends Component{
       students: updatedStudentsArray
     })
   }
+
+  logout = () => {
+    this.setState({
+      id: 0,
+      name: '',
+      age: 0,
+      subject: '',
+      students: [],
+      goals: [],
+      currentStudent: {}
+    }) 
+    this.props.history.push('/')
+    // debugger
+  }
   
   render() {
+    // console.log(this.props.history)
+    if (this.state.id === 0 && this.props.history.location.pathname !== '/') {
+      this.props.history.push('/')
+    }
     // console.log(this.state.students)
     // debugger
     let studentKeys = this.state.students.length ? Object.keys(this.state.students[0]) : []
@@ -140,7 +171,10 @@ class App extends Component{
         <h1 style={{paddingTop: 20, fontSize: 40, textAlign: 'center' , color: 'black', fontWeight: 'bold', fontFamily: 'Lucida Std'}}>✨Star Chart✨</h1>
         {/* <Switch> */}
           <Route exact path='/'>
-            <h1>Welcome {this.state.name}!</h1>
+            <Login login={this.login}/>
+          </Route>
+          <Route exact path='/home'>
+            <h1>Welcome {this.state.name}!</h1> <Button color ='grey' onClick={this.logout}>Logout</Button>
             <GoalList goals={this.state.goals} teacherId={this.state.id} addItem={this.addItem}/>
             <StudentList 
               students={this.state.students} 
@@ -181,4 +215,4 @@ class App extends Component{
   }
 }
 
-export default App;
+export default withRouter(App);

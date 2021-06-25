@@ -43,11 +43,12 @@ handleDelete = (e) => {
     let arrOfStudentGoals = filteredStudentGoal.map(studentGoal=>{
       // console.log(arrOfStudentGoals)
       return (
-        <Card itemPerRow={2} style={{marginTop: 10, padding:10, backgroundColor: '#8db4c9'}}>
-      <div style={{align: 'center'}} data-id={studentGoal.id} key={studentGoal.id} onClick={this.addStar}>
+        <Card key={studentGoal.id} itemPerRow={2} style={{marginTop: 10, padding:10, backgroundColor: '#8db4c9'}}>
+      <div style={{align: 'center'}} >
           <h3 style={{fontFamily: 'Lucida Std'}}>Goal: {studentGoal.goal_title}</h3>
           {studentGoal.completed ? <p><strong>Goal Complete!</strong></p> : ''}
-          <i className="yellow star icon"></i> <span style={{fontWeight: 'bold'}}>Stars: {studentGoal.star}<br/></span>
+          <i data-id={studentGoal.id} onClick={this.addStar} className="yellow star icon"></i><span style={{fontWeight: 'bold'}}>Stars: {studentGoal.star} of {studentGoal.stars_to_complete}</span>
+          {/* <Button data-id={studentGoal.id} onClick={this.addStar}>+</Button> */}
       </div>
       <Button data-id={studentGoal.id} style={{marginTop: 10}}color='black' onClick={this.handleDelete}>Delete</Button>
       </Card>

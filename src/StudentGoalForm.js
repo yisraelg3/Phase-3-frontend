@@ -5,7 +5,8 @@ import { Button, Form } from 'semantic-ui-react'
 class StudentGoalForm extends Component {
   
   state = {
-      goal: this.props.goals[0].title
+      goal: this.props.goals[0].title,
+      stars_to_complete: ''
   }
 
   handleSubmit = (event) => {
@@ -15,6 +16,7 @@ class StudentGoalForm extends Component {
       goal_id: this.props.goals.find(goal => goal.title === this.state.goal).id,
       star: 0,
       completed: false,
+      stars_to_complete: this.state.stars_to_complete
     } 
 
     fetch(`http://localhost:9393/studentgoals`,{
@@ -27,9 +29,9 @@ class StudentGoalForm extends Component {
     .then(res => res.json())
     .then(newStudentGoal => this.props.addGoalToStudent(newStudentGoal, this.state.goal))
     .then(t => {
-      this.setState ({
-        goal: this.props.goals[0].title
-      })
+      // this.setState ({
+      //   goal: this.props.goals[0].title
+      // })
       this.props.history.push('/studentgoals')
     })
   }
@@ -37,7 +39,15 @@ class StudentGoalForm extends Component {
 
   handleChange = (event) => {
     this.setState({
-      goal: event.target.value
+      goal: event.target.value,
+
+    })
+  }
+
+  handleToCompleteChange = (event) => {
+    this.setState({
+      stars_to_complete: event.target.value,
+
     })
   }
 
@@ -46,6 +56,9 @@ class StudentGoalForm extends Component {
   }
   
     render() {
+      if (this.props.goals.length === 0) {
+        this.props.history.push('/')
+      }
       // console.log(this.props.goals)
       // console.log(this.state.goal)
       const goalList = this.props.goals.map(goal => <option key={goal.id} value={goal.title}> {goal.title} </option>)
@@ -57,6 +70,9 @@ class StudentGoalForm extends Component {
             <select  value={this.state.goal} onChange={this.handleChange}>
               {goalList}
             </select>
+            <br/>
+            <label htmlFor='stars_to_complete'>Stars to complete: </label>
+            <input name='stars_to_complete' type='text' value={this.state.stars_to_complete} onChange={this.handleToCompleteChange} placeholder='Number of stars until goal is complete'/>
             <Button style={{marginTop:300}} color='black' type='submit'>Submit</Button>
             <Button color='grey' onClick={this.cancel}>Cancel</Button>
         </Form>
