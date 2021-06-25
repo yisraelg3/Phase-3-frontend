@@ -152,18 +152,18 @@ class App extends Component{
     }
     // console.log(this.state.students)
     // debugger
-    let studentKeys = this.state.students.length ? Object.keys(this.state.students[0]) : []
-    let studentTransformKeys = studentKeys.map(key => {
-      if (key === 'siblings_amount') {
-        return 'number_of_siblings'
-      } else {
-        return key
-      }
-    })
-    let studentCorrectKeys = this.state.students.length > 0 ? studentTransformKeys.filter(key => ['name','grade','hair_color','number_of_siblings'].includes(key)) : studentKeys
+    // let studentKeys = this.state.students.length ? Object.keys(this.state.students[0]) : []
+    // let studentTransformKeys = studentKeys.map(key => {
+    //   if (key === 'siblings_amount') {
+    //     return 'number_of_siblings'
+    //   } else {
+    //     return key
+    //   }
+    // })
+    let studentCorrectKeys =  ['name','grade','hair_color','number_of_siblings']
 
-    let goalKeys = this.state.goals.length > 0 ? Object.keys(this.state.goals[0]) : []
-    let goalCorrectKeys = this.state.goals.length > 0 ? goalKeys.filter(key => ['title','description'].includes(key)) : goalKeys
+    // let goalKeys = this.state.goals.length > 0 ? Object.keys(this.state.goals[0]) : []
+    let goalCorrectKeys = ['title','description']
 
     // console.log(this.state)
     return (
