@@ -5,8 +5,8 @@ import { withRouter} from'react-router-dom'
 
 class Student extends Component {
   handleClick = () => {
+    this.props.history.push(`/studentgoals/${this.props.studentObj.id}`)
    this.props.setCurrentStudent(this.props.studentObj)
-   this.props.history.push("/studentgoals")
   }
 
   render() {

@@ -196,10 +196,11 @@ class App extends Component{
         <Route exact path='/newgoal'>
           <InputForm correctKeys={goalCorrectKeys} name='goals' teacherId={this.state.id} addItem={this.addItem}/>
         </Route>
-        <Route exact path='/studentgoals'>
+        <Route exact path='/studentgoals/:id' render={routerProps => {
+          return (
             <StudentGoalList 
             deleteStudentGoalFromState = {this.deleteStudentGoalFromState}
-            // routerProps={routerProps}
+            routerProps={routerProps}
             currentStudent={this.state.currentStudent} 
             students={this.state.students} 
             teacherId={this.state.id}
@@ -207,7 +208,7 @@ class App extends Component{
             // star={this.state.star}
             addGoalToStudent={this.addGoalToStudent}
             addStar={this.addStar}
-          /> 
+          /> )}}>
         </Route> 
         {/* </Switch> */}
       </div>
