@@ -32,7 +32,8 @@ addStar = (e) => {
       return (
       <div data-id={studentGoal.id} key={studentGoal.id} className="ui black button" onClick={this.addStar}>
           <p>Goal Title: {studentGoal.goal_title}</p>
-          <i className="yellow star icon"></i> star: {studentGoal.star}
+          {studentGoal.completed ? <p><strong>Goal Complete!</strong></p> : ''}
+          <i className="yellow star icon"></i> <span>Stars: {studentGoal.star}</span>
       </div>
       )
     })

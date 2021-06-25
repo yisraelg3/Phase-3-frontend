@@ -76,7 +76,7 @@ class App extends Component{
     const student = this.state.students.find(student => student.id === updatedStudentObj.student_id)
     const updatedStudentGoals= student.studentgoals.map(studentGoalobj => {
       if (studentGoalobj.id === updatedStudentObj.id ){
-        return Object.assign({}, studentGoalobj, {star: updatedStudentObj.star})
+        return Object.assign({}, studentGoalobj, {star: updatedStudentObj.star},{completed: updatedStudentObj.completed})
       } else {
         return studentGoalobj
       }
