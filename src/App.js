@@ -116,6 +116,7 @@ class App extends Component{
         <h1>Star Chart</h1>
         {/* <Switch> */}
           <Route exact path='/'>
+            <h1>Welcome {this.state.name}!</h1>
             <GoalList goals={this.state.goals} teacherId={this.state.id} addItem={this.addItem}/>
             <StudentList 
               students={this.state.students} 

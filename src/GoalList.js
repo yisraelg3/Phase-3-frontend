@@ -12,7 +12,7 @@ export default class GoalList extends Component {
 
     return (
       <div>
-        <h2> Goal Lists </h2>
+        <h2> Your Goal List </h2>
         <Link to='/newgoal'><Button>+ Add new Goal</Button></Link>
         <Card.Group itemsPerRow={1}>
         {arrOfGoalList}

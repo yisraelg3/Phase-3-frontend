@@ -21,6 +21,7 @@ class StudentGoalList extends Component {
     return (
       <div>
         <h2>Student Goals</h2>
+        <h2>{this.props.currentStudent.name}</h2>
         <Link to='/'>Home</Link><br/><br/>
         <Link to='/newstudentgoal'>+ Add new Goal</Link>
         {arrOfStudentGoalList}

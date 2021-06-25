@@ -14,7 +14,7 @@ export default class StudentList extends Component {
 
     return (
       <div>
-        <h2>Student List</h2>
+        <h2>Your Student List</h2>
         <Link to='/newstudent'><Button>+ Add new Student</Button></Link>
         <Card.Group itemsPerRow={4}>
         {arrOfStudentList}
