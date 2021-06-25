@@ -7,6 +7,7 @@ import { Button } from 'semantic-ui-react'
 class StudentGoalList extends Component {
 
   render() {
+    console.log("I'm studentgoal list")
     if (this.props.students.length === 0) {
       this.props.history.push('/')
     }

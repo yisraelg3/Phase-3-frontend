@@ -37,6 +37,7 @@ handleDelete = (e) => {
 
   render() {
     // console.log(this.props)
+
     let filteredStudentGoal = this.props.StudentGoalObj.filter(goal=> {
       return goal.student_id === this.props.currentStudent.id})
     
