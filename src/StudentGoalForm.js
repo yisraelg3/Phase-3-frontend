@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { Button, Form } from 'semantic-ui-react'
 
-export default class StudentGoalForm extends Component {
+class StudentGoalForm extends Component {
   
   state = {
       goal: this.props.goals[0].title
@@ -29,6 +30,7 @@ export default class StudentGoalForm extends Component {
       this.setState ({
         goal: this.props.goals[0].title
       })
+      this.props.history.push('/studentgoals')
     })
   }
 
@@ -37,6 +39,10 @@ export default class StudentGoalForm extends Component {
     this.setState({
       goal: event.target.value
     })
+  }
+
+  cancel = () => {
+    this.props.history.push('/studentgoals')
   }
   
     render() {
@@ -51,9 +57,11 @@ export default class StudentGoalForm extends Component {
             <select  value={this.state.goal} onChange={this.handleChange}>
               {goalList}
             </select>
-            <Button>Submit</Button>
+            <Button type='submit'>Submit</Button>
+            <Button onClick={this.cancel}>Cancel</Button>
         </Form>
       </div>
     )
   }
 }
+export default withRouter(StudentGoalForm)

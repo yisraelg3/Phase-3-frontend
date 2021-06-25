@@ -17,7 +17,7 @@ class App extends Component{
     students: [],
     goals: [],
     currentStudent: {},
-    star: 0
+    studentgoals: []
   }
   
   componentDidMount(){ 
@@ -71,6 +71,21 @@ class App extends Component{
   }
   
   render() {
+    // console.log(this.state.students)
+    // debugger
+    let studentKeys = this.state.students.length ? Object.keys(this.state.students[0]) : []
+    let studentTransformKeys = studentKeys.map(key => {
+      if (key === 'siblings_amount') {
+        return 'number_of_siblings'
+      } else {
+        return key
+      }
+    })
+    let studentCorrectKeys = this.state.students.length > 0 ? studentTransformKeys.filter(key => ['name','grade','hair_color','number_of_siblings'].includes(key)) : studentKeys
+
+    let goalKeys = this.state.goals.length > 0 ? Object.keys(this.state.goals[0]) : []
+    let goalCorrectKeys = this.state.goals.length > 0 ? goalKeys.filter(key => ['title','description'].includes(key)) : goalKeys
+
     // console.log(this.state)
     return (
       <div>
@@ -85,25 +100,30 @@ class App extends Component{
               addItem={this.addItem}
             />
           </Route>
-          <Route exact path='/:id' render={routerProps => {
+          <Route exact path='/newstudentgoal'>
+            <StudentGoalForm 
+              goals={this.state.goals} 
+              currentStudent={this.state.currentStudent} 
+              addGoalToStudent={this.addGoalToStudent}
+            />
+          </Route>
+          <Route exact path='/newstudent'>
+           <InputForm correctKeys={studentCorrectKeys} name='students' teacherId={this.state.id} addItem={this.addItem}/>
+        </Route>
+        <Route exact path='/newgoal'>
+          <InputForm correctKeys={goalCorrectKeys} name='goals' teacherId={this.state.id} addItem={this.addItem}/>
+        </Route>
+        <Route exact path='/studentgoals'>
             <StudentGoalList 
-            routerProps={routerProps}
+            // routerProps={routerProps}
             currentStudent={this.state.currentStudent} 
             students={this.state.students} 
             teacherId={this.state.id}
             goals={this.state.goals}
-            star={this.state.star}x
+            // star={this.state.star}
             addGoalToStudent={this.addGoalToStudent}
           /> 
-          }}>  
-          </Route>
-          <Route exact path='/newstudentgoal'>
-            <StudentGoalForm 
-              goals={this.props.goals} 
-              currentStudent={this.props.currentStudent} 
-              addGoalToStudent={this.props.addGoalToStudent}
-            />
-          </Route>
+        </Route> 
         {/* </Switch> */}
       </div>
     )

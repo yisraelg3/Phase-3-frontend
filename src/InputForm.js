@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { Button, Form } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom'
 
-export default class InputForm extends Component {
+class InputForm extends Component {
 
   makeState = () => {
     const forState = {} 
@@ -50,12 +51,16 @@ export default class InputForm extends Component {
           [key]: ''
         })
       })
+      this.props.history.push('/')
     })
   }
 
+  cancel = () => {
+    this.props.history.push('/')
+  }
+
   render() {
-    //  console.log(this.state)
-    // debugger
+    
      const inputs = this.props.correctKeys.map(key => {
        let UpcaseLabel = key[0].toUpperCase() + key.slice(1)
        let label = UpcaseLabel.replaceAll('_', ' ')
@@ -73,8 +78,10 @@ export default class InputForm extends Component {
         <Form onSubmit={this.handleSubmit}>
           {inputs}
           <Button type='submit'>Submit</Button>
+          <Button onClick={this.cancel}>Cancel</Button>
         </Form>
       </div>
     )
   }
 }
+export default withRouter(InputForm)
