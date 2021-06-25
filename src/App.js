@@ -5,7 +5,7 @@ import StudentList from './StudentList'
 import StudentGoalList from './StudentGoalList'
 import StudentGoalForm from './StudentGoalForm'
 import InputForm from'./InputForm'
-import {Switch, Route} from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 class App extends Component{
   
@@ -69,6 +69,30 @@ class App extends Component{
       currentStudent: student
     })
   }
+
+  addStar = (updatedStudentObj) => {
+    // console.log(updatedStudentObj)
+    // console.log(this.state.students)
+    const student = this.state.students.find(student => student.id === updatedStudentObj.student_id)
+    const updatedStudentGoals= student.studentgoals.map(studentGoalobj => {
+      if (studentGoalobj.id === updatedStudentObj.id ){
+        return Object.assign({}, studentGoalobj, {star: updatedStudentObj.star})
+      } else {
+        return studentGoalobj
+      }
+    })
+    const updatedStudentsArray = this.state.students.map(studentObj => {
+      if (studentObj.id === student.id) {
+        return Object.assign({}, studentObj, {studentgoals: updatedStudentGoals})
+      } else {
+        return studentObj
+      }
+    })
+    // console.log(updatedStudentsArray)
+    this.setState({
+      students: updatedStudentsArray
+    })
+  }
   
   render() {
     // console.log(this.state.students)
@@ -122,6 +146,7 @@ class App extends Component{
             goals={this.state.goals}
             // star={this.state.star}
             addGoalToStudent={this.addGoalToStudent}
+            addStar={this.addStar}
           /> 
         </Route> 
         {/* </Switch> */}

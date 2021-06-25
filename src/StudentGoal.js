@@ -7,8 +7,9 @@ export default class StudentGoal extends Component {
 
 
 addStar = (e) => {
-  console.log(e.target.dataset.id)
-  let starId = parseInt(e.target.dataset.id)
+  // console.log(e.currentTarget.dataset.id)
+  let starId = parseInt(e.currentTarget.dataset.id)
+  // console.log(starId)
   fetch(`http://localhost:9393/addstar`,{
     method: 'PATCH',
     headers : {
@@ -17,7 +18,8 @@ addStar = (e) => {
     body: JSON.stringify({id: starId})
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(studentGoalObj => {
+      this.props.addStar(studentGoalObj)})
 }
 
   render() {
@@ -26,6 +28,7 @@ addStar = (e) => {
       return goal.student_id === this.props.currentStudent.id})
     
     let arrOfStudentGoals = filteredStudentGoal.map(studentGoal=>{
+      // console.log(studentGoal)
       return (
       <div data-id={studentGoal.id} key={studentGoal.id} className="ui black button" onClick={this.addStar}>
           <p>Goal Title: {studentGoal.goal_title}</p>

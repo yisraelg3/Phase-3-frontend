@@ -11,7 +11,11 @@ class StudentGoalList extends Component {
     }
     // console.log(this.props)
     let arrOfStudentGoalList = this.props.students.map(StudentObj=>{
-      return <StudentGoal key={StudentObj.id} StudentGoalObj={StudentObj.studentgoals} currentStudent={this.props.currentStudent}/>
+      return (<StudentGoal 
+        key={StudentObj.id} 
+        StudentGoalObj={StudentObj.studentgoals} 
+        currentStudent={this.props.currentStudent}
+        addStar={this.props.addStar}/>)
     })
 
     return (
